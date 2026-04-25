@@ -32,6 +32,7 @@
   border-top-right-radius: 16px;
   border-bottom-right-radius: 16px;
   z-index: 100;
+  flex-shrink: 0;
 }
 
 .tabs button {
@@ -70,15 +71,17 @@
 }
 
 /* =====================
-   MAIN CONTENT AREA
+   MAIN CONTENT AREA - REMOVED GAP
 ===================== */
 .approval-content {
   flex: 1;
-  margin-left: 250px;
+  margin-left: 0;
   padding: 40px 50px 80px 50px;
   max-width: calc(100% - 250px);
   min-height: 100vh;
   transition: all 0.3s ease;
+  width: 100%;
+  overflow-x: auto;
 }
 
 .approval-content h2 {
@@ -552,6 +555,8 @@
   border: 1px solid #e2e8f0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   margin-bottom: 35px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .event-form h3 {
@@ -592,6 +597,7 @@
   background-color: #f8fafc;
   transition: all 0.3s ease;
   font-family: inherit;
+  box-sizing: border-box;
 }
 
 .event-form textarea {
@@ -612,6 +618,7 @@
   display: flex;
   gap: 10px;
   margin-top: 20px;
+  flex-wrap: wrap;
 }
 
 .submit-btn {
@@ -664,6 +671,9 @@
   border: 1px solid #e2e8f0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   margin-bottom: 35px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
 }
 
 .events-section h3 {
@@ -676,7 +686,7 @@
 }
 
 /* =====================
-   ADMIN TABLE
+   ADMIN TABLE - FIXED VISIBILITY
 ===================== */
 .admin-table {
   width: 100%;
@@ -684,8 +694,9 @@
   border-radius: 12px;
   border: 1px solid #e2e8f0;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
   border-collapse: collapse;
+  min-width: 800px;
+  table-layout: auto;
 }
 
 .admin-table thead {
@@ -708,6 +719,7 @@
   border-bottom: 1px solid #f1f5f9;
   color: #475569;
   font-size: 14px;
+  vertical-align: middle;
 }
 
 .admin-table tbody tr {
@@ -753,6 +765,7 @@
   font-size: 12px;
   font-weight: 500;
   text-transform: capitalize;
+  display: inline-block;
 }
 
 /* =====================
@@ -789,12 +802,13 @@
 }
 
 /* =====================
-   ACTION BUTTONS
+   ACTION BUTTONS - FULLY VISIBLE
 ===================== */
 .action-buttons {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .action-buttons button {
@@ -805,11 +819,18 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: 36px;
+  width: auto;
   height: 36px;
+}
+
+.action-buttons button span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .action-buttons button:hover {
@@ -869,6 +890,34 @@
 
 .delete-btn:hover {
   background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+}
+
+.remove-btn-container {
+  padding: 15px 20px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+}
+
+.btn-remove-dashboard {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.btn-remove-dashboard:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-2px);
 }
 
 /* =====================
@@ -1172,7 +1221,6 @@
   }
   
   .approval-content {
-    margin-left: 220px;
     max-width: calc(100% - 220px);
     padding: 30px 35px 60px 35px;
   }
@@ -1263,12 +1311,14 @@
   }
   
   .action-buttons {
-    flex-direction: column;
-    gap: 4px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
   }
   
   .action-buttons button {
-    width: 100%;
+    flex: 1;
+    min-width: 70px;
   }
   
   .modal-actions {
@@ -1277,6 +1327,10 @@
   
   .modal-actions button {
     width: 100%;
+  }
+  
+  .admin-table {
+    min-width: 700px;
   }
 }
 
@@ -1327,6 +1381,18 @@
     max-width: 100vw;
     max-height: 100vh;
     border-radius: 0;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
+  
+  .action-buttons button {
+    width: 100%;
+  }
+  
+  .admin-table {
+    min-width: 650px;
   }
 }
 
