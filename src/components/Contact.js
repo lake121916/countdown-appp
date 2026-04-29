@@ -47,7 +47,7 @@ const Contact = () => {
       setFormData(prev => ({ ...prev, message: "" }));
     } catch (error) {
       console.error("Error sending message:", error);
-      setStatus("❌ Failed to send message. Please try again.");
+      setStatus("❌ Failed to send message. Please First login to send.");
     }
   };
 
